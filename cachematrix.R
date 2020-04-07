@@ -2,7 +2,6 @@
 ## functions do
 
 ## Write a short comment describing this function
-
 makeCacheMatrix <- function(x = matrix()) {
         inverse <-NULL
         set <- function (y) {
@@ -10,17 +9,17 @@ makeCacheMatrix <- function(x = matrix()) {
                 inverse <<- NULL
         }
         get <- function(x)
-        setinverse <- function(solve) inverse <<- solve
-        getinverse <- function() inverse
+        setsolve <- function(solve) inverse <<- solve
+        getsolve <- function() inverse
         list(set = set, get = get,
-             setinverse = setinverse,
-             getinverse = getinverse)
+             setsolve = setsolve,
+             getsolve = getsolve)
 }
 
 ## Write a short comment describing this function
 
 cacheSolve <- function(x, ...) {
-        inverse <- get$inverse
+        inverse <- get$solve
         if(!is.null(inverse)) {
                 message("getting cached data")
                 return(inverse)
@@ -28,10 +27,12 @@ cacheSolve <- function(x, ...) {
         data <- x$get
         inverse <-solve(data,..)
         ##Check to see if solve has any further arguments ...
-        x$setinverse(inverse)
+        x$setsolve(inverse)
         inverse
         ##Run test matricies
         ## Return a matrix that is the inverse of 'x'
 }
+
+
 
 
