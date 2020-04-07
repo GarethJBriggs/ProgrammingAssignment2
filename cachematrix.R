@@ -3,12 +3,12 @@
 
 ## Write a short comment describing this function
 makeCacheMatrix <- function(x = matrix()) {
-        inverse <-NULL
+        inverse <- NULL
         set <- function (y) {
                 x <<- y
                 inverse <<- NULL
         }
-        get <- function(x)
+        get <- function() x
         setsolve <- function(solve) inverse <<- solve
         getsolve <- function() inverse
         list(set = set, get = get,
@@ -19,14 +19,14 @@ makeCacheMatrix <- function(x = matrix()) {
 ## Write a short comment describing this function
 
 cacheSolve <- function(x, ...) {
-        inverse <- get$solve
+        inverse <- x$getsolve()
         if(!is.null(inverse)) {
                 message("getting cached data")
                 return(inverse)
-                }
-        data <- x$get
-        inverse <-solve(data,..)
-        ##Check to see if solve has any further arguments ...
+        }
+        data <- x$get()
+        inverse <- solve(data, ,...)
+        ##Check to see if solve has any further arguments 
         x$setsolve(inverse)
         inverse
         ##Run test matricies
