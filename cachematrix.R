@@ -7,7 +7,7 @@
 ## retrieved from cache.
 
 ## makeCacheMatrix function creates a matrix object 'x', as well as getters and setters to 
-## cache the inverse and update and retrieve 'x, and also initialises the inverse.
+## cache the inverse and update and retrieve 'x', and also initialises the inverse.
 
 makeCacheMatrix <- function(x = matrix()) {
         inverse <- NULL
@@ -20,7 +20,7 @@ makeCacheMatrix <- function(x = matrix()) {
         ## get function acquires value of 'x' from the parent environment
         get <- function() x
         ## setsolve function sets the value of the inverse within the parent environment  
-        ## via thedeep assighnment operator, from the value of solve 
+        ## via the deep assighnment operator, from the value of solve 
         setsolve <- function(solve) inverse <<- solve
         ## getsolve function acquires the value of the inverse from the parent evironment
         getsolve <- function() inverse
