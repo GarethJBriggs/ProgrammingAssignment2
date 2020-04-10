@@ -1,27 +1,28 @@
-## To cache an inverse matrix, makecacheMatrix takes a matrix and creates a matrix object 'x', 
+## To cache an inverse matrix, makeCacheMatrix takes a matrix and creates a matrix object 'x', 
 ## initiates and sets the inverse value to null and encodes a subsettable list of functions.    
 ## The functions are getters and setters of 'x' and it's inverse, facilitating the retreval and 
-## manipulation of these objects.The updating of 'x' and inverse object values within makecacheMatrix  
-## occurs through the use of lexical scoping. With the setters, respectively, resetting the  
-## values of 'x'and the inverse, in the parent domain via lexical scoping. This uses the deep assignment 
-## operator.Enabling the caching of the inverse and an ability to reset 'x'
+## manipulation of these objects.The updating of 'x' and inverse object values within  
+## makeCacheMatrix occurs through the use of lexical scoping. The setters, respectively, reset the  
+## values of 'x'and the inverse in the parent domain via lexical scoping. This uses the deep  
+## assignment operator.Enabling the caching of the inverse and an ability to reset 'x'. The encoding
+## of the getters and setters within mackecacheMAtrix as named list elements enables these functions
+## to be accessable via subscripting, for use in cacheSolve.
 
 
-## cacheSove returns the inverse matrix of the of 'x' where is 'x' = makecacheMatrix(x). Firstly,
-## cacheSolve retreves the inverse value from 'x' and checks if the inverse has been calculated, i.e.
-## if the value in non-null. If so, a retreval message is returned and the inverse is returned 
-## from cache. If 'x' is null, the inverse is then calculated. Following this, the setslove function
-## is called, which uses the newly calulated inverse to set the inverse value in makecacheMatrix.
+## cacheSolve returns the inverse matrix of the of 'x', where is 'x' an argument of makeCacheMatrix().
+## Firstly, cacheSolve retreves the inverse value from 'x' and checks if the inverse has been 
+## calculated, i.e.if the value is non-null. If so, a retreval message is displyed and the inverse  
+## is returned from cache. If the inverse is null, it is then calculated. Following this, the 
+## setslove function is called, which uses the newly calulated inverse to set the inverse value in 'x'.
 ## The inverse of 'x' is then returned
 
-## makecaheMatrix funtion creates a matrix object 'x' as well as getters and setters to  
+## makeCacheMatrix funtion creates a matrix object 'x' as well as getters and setters to  
 ## cache the inverse of 'x'
 
 makeCacheMatrix <- function(x = matrix()) {
         inverse <- NULL
-        ##Set funtion enables the resetting of both the inverse to null in the parent
-        ##and of  of 'x' matrix value to 'y', in the parent environment via the use of
-        ## the deep assighnment operator
+        ##set funtion enables the resetting of both the inverse to null and of 'x' to the value
+        ## of 'y', in the parent environment via the use of the deep assighnment operator
         set <- function (y) {
                 x <<- y
                 inverse <<- NULL
@@ -31,32 +32,31 @@ makeCacheMatrix <- function(x = matrix()) {
         ## setsolve funtion sets the value of the inverse within the parent environment  
         ## via thedeep assighnment operator, from the value of solve 
         setsolve <- function(solve) inverse <<- solve
-        ## getsolve funtion acquires the value of the inverse from the parent 
-        ## evironment
+        ## getsolve funtion acquires the value of the inverse from the parent evironment
         getsolve <- function() inverse
         ## functions put into a list as named elements so the getters and setters can 
-        ## be accessed viasubsetting using $ 
+        ## be accessed via subsetting using $ 
         list(set = set, get = get,
              setsolve = setsolve,
              getsolve = getsolve)
 }
 
-## cachsolve calculates the inverse matrix of 'x' or if this inverse has been previously cached,  
-## returns the inverse matrix from cache
+## cacheSolve calculates the inverse matrix of 'x' or if this inverse has been previously cached,  
+## returns the inverse from cache
 
 cacheSolve <- function(x, ...) {
-        ## retreval of inverse value from 'x'
+        ## Retreval of inverse value from 'x'
         inverse <- x$getsolve()
-        ## logical test to see if inverse of 'x' has been calculated previously, 
+        ## Logical test to see if inverse of 'x' has been calculated previously, 
         ## i.e. is non-null
         if(!is.null(inverse)) {
                 message("getting cached data")
                 return(inverse)
         }
         data <- x$get()
-        ## Calaculatiion of the martix inverse
+        ## Calaculatiion of the  inverse
         inverse <- solve(data, ...)
-        ## Setsolve functon in 'x' acquires the value of the inverse
+        ## setsolve functon in 'x' acquires the value of the inverse
         x$setsolve(inverse)
         ## Return a matrix that is the inverse of 'x'
         inverse
