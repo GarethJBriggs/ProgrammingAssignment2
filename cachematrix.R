@@ -1,13 +1,13 @@
-##JHU Programming Assignment #2
-##Gareth Jmaes Briggs
+##JHU R Programming Assignment #2
+##Gareth James Briggs
 ##March 2020
 
 ## These funtions enable the calculation of the inverse of a matrix and the inverse's caching. 
-## The invese need not be calculated again following theinput of the same matrix, it can be  
+## The inverse need not be calculated again following the input of the same matrix, it can be  
 ## retrieved from cache.
 
-## makeCacheMatrix funtion creates a matrix object 'x' as well as getters and setters to  
-## cache the inverse of 'x'
+## makeCacheMatrix funtion creates a matrix object 'x', as well as getters and setters to 
+## cache the inverse and update and retrieve 'x, and also initialises the inverse.
 
 makeCacheMatrix <- function(x = matrix()) {
         inverse <- NULL
@@ -44,7 +44,7 @@ cacheSolve <- function(x, ...) {
                 return(inverse)
         }
         data <- x$get()
-        ## Calaculatiion of the  inverse
+        ## Calaculatiion of the inverse
         inverse <- solve(data, ...)
         ## setsolve functon in 'x' acquires the value of the inverse
         x$setsolve(inverse)
