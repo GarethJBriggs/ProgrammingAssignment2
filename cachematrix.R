@@ -1,20 +1,10 @@
-## To cache an inverse matrix, makeCacheMatrix takes a matrix and creates a matrix object 'x', 
-## initiates and sets the inverse value to null and encodes a subsettable list of functions.    
-## The functions are getters and setters of 'x' and it's inverse, facilitating the retreval and 
-## manipulation of these objects.The updating of 'x' and inverse object values within  
-## makeCacheMatrix occurs through the use of lexical scoping. The setters, respectively, reset the  
-## values of 'x'and the inverse in the parent domain via lexical scoping. This uses the deep  
-## assignment operator.Enabling the caching of the inverse and an ability to reset 'x'. The encoding
-## of the getters and setters within mackecacheMAtrix as named list elements enables these functions
-## to be accessable via subscripting, for use in cacheSolve.
+##JHU Programming Assignment #2
+##Gareth Jmaes Briggs
+##March 2020
 
-
-## cacheSolve returns the inverse matrix of the of 'x', where is 'x' an argument of makeCacheMatrix().
-## Firstly, cacheSolve retreves the inverse value from 'x' and checks if the inverse has been 
-## calculated, i.e.if the value is non-null. If so, a retreval message is displyed and the inverse  
-## is returned from cache. If the inverse is null, it is then calculated. Following this, the 
-## setslove function is called, which uses the newly calulated inverse to set the inverse value in 'x'.
-## The inverse of 'x' is then returned
+## These funtions enable the calculation of the inverse of a matrix and the inverse's caching. 
+## The invese need not be calculated again following theinput of the same matrix, it can be  
+## retrieved from cache.
 
 ## makeCacheMatrix funtion creates a matrix object 'x' as well as getters and setters to  
 ## cache the inverse of 'x'
